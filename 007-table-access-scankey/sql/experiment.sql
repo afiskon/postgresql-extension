@@ -6,5 +6,5 @@ INSERT INTO phonebook (id, name, phone) VALUES
 
 SELECT phonebook_lookup_seqscan_deform('Alice');
 SELECT phonebook_lookup_seqscan_deform('Bob');
-
+SELECT phonebook_lookup_seqscan_deform('Bob') IS NULL AS "is_null";
 DROP EXTENSION experiment;

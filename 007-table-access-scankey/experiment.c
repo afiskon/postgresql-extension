@@ -89,5 +89,9 @@ phonebook_lookup_seqscan_deform(PG_FUNCTION_ARGS)
 
 	table_endscan(scan);
 	table_close(rel, AccessShareLock);
+
+	if(found_phone == -2)
+		PG_RETURN_NULL();
+
 	PG_RETURN_INT32(found_phone);
 }

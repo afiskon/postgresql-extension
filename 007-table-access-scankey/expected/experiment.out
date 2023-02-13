@@ -11,7 +11,13 @@ SELECT phonebook_lookup_seqscan_deform('Alice');
 SELECT phonebook_lookup_seqscan_deform('Bob');
  phonebook_lookup_seqscan_deform 
 ---------------------------------
-                              -2
+                                
+(1 row)
+
+SELECT phonebook_lookup_seqscan_deform('Bob') IS NULL AS "is_null";
+ is_null 
+---------
+ t
 (1 row)
 
 DROP EXTENSION experiment;
