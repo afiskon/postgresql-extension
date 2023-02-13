@@ -1,0 +1,111 @@
+CREATE EXTENSION experiment;
+SELECT phonebook_insert('Alice', 123);
+ phonebook_insert 
+------------------
+                1
+(1 row)
+
+SELECT * FROM phonebook;
+ id | name  | phone 
+----+-------+-------
+  1 | Alice |   123
+(1 row)
+
+SELECT phonebook_insert('Bob', 456);
+ phonebook_insert 
+------------------
+                2
+(1 row)
+
+SELECT * FROM phonebook;
+ id | name  | phone 
+----+-------+-------
+  1 | Alice |   123
+  2 | Bob   |   456
+(2 rows)
+
+SELECT phonebook_lookup_seqscan('Alice');
+ phonebook_lookup_seqscan 
+--------------------------
+                      123
+(1 row)
+
+SELECT phonebook_lookup_seqscan('Bob');
+ phonebook_lookup_seqscan 
+--------------------------
+                      456
+(1 row)
+
+SELECT phonebook_lookup_seqscan('Charlie');
+ phonebook_lookup_seqscan 
+--------------------------
+                       -1
+(1 row)
+
+SELECT phonebook_lookup_seqscan_deform('Alice');
+ phonebook_lookup_seqscan_deform 
+---------------------------------
+                             123
+(1 row)
+
+SELECT phonebook_lookup_seqscan_deform('Bob');
+ phonebook_lookup_seqscan_deform 
+---------------------------------
+                             456
+(1 row)
+
+SELECT phonebook_lookup_seqscan_deform('Charlie');
+ phonebook_lookup_seqscan_deform 
+---------------------------------
+                              -1
+(1 row)
+
+SELECT phonebook_lookup_index('Alice');
+ phonebook_lookup_index 
+------------------------
+                    123
+(1 row)
+
+SELECT phonebook_lookup_index('Bob');
+ phonebook_lookup_index 
+------------------------
+                    456
+(1 row)
+
+SELECT phonebook_lookup_index('Charlie');
+ phonebook_lookup_index 
+------------------------
+                     -1
+(1 row)
+
+SELECT phonebook_update_simple('Alice', 789);
+ phonebook_update_simple 
+-------------------------
+                     123
+(1 row)
+
+SELECT phonebook_lookup_index('Alice');
+ phonebook_lookup_index 
+------------------------
+                    789
+(1 row)
+
+SELECT phonebook_delete_simple('Alice');
+ phonebook_delete_simple 
+-------------------------
+                     789
+(1 row)
+
+SELECT phonebook_lookup_index('Alice');
+ phonebook_lookup_index 
+------------------------
+                     -1
+(1 row)
+
+SELECT phonebook_delete_simple('Charlie');
+ phonebook_delete_simple 
+-------------------------
+                      -1
+(1 row)
+
+DROP EXTENSION experiment;

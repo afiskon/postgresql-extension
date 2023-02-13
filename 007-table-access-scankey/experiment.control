@@ -1,0 +1,4 @@
+comment = 'Experiment: yet another experiment with PostgreSQL extensions'
+default_version = '1.0'
+module_pathname = '$libdir/experiment'
+relocatable = false
