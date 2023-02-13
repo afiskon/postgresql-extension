@@ -9,3 +9,6 @@ AS 'MODULE_PATHNAME', 'phonebook_lookup_seqscan_deform' LANGUAGE C;
 
 CREATE OR REPLACE FUNCTION phonebook_find_first_null_phone() RETURNS INT
 AS 'MODULE_PATHNAME', 'phonebook_find_first_null_phone' LANGUAGE C;
+
+CREATE OR REPLACE FUNCTION phonebook_find_first_notnull_phone() RETURNS INT
+AS 'MODULE_PATHNAME', 'phonebook_find_first_notnull_phone' LANGUAGE C;

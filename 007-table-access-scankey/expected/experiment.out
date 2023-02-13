@@ -5,6 +5,12 @@ SELECT phonebook_find_first_null_phone();
                               -1
 (1 row)
 
+SELECT phonebook_find_first_notnull_phone();
+ phonebook_find_first_notnull_phone 
+------------------------------------
+                                 -1
+(1 row)
+
 INSERT INTO phonebook (id, name, phone) VALUES
 (1, 'Alice', 123456),
 (2, 'Bob', NULL);
@@ -30,6 +36,12 @@ SELECT phonebook_find_first_null_phone();
  phonebook_find_first_null_phone 
 ---------------------------------
                                2
+(1 row)
+
+SELECT phonebook_find_first_notnull_phone();
+ phonebook_find_first_notnull_phone 
+------------------------------------
+                                  1
 (1 row)
 
 DROP EXTENSION experiment;
