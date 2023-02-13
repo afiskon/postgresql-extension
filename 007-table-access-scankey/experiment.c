@@ -93,10 +93,9 @@ phonebook_find_first_null_phone(PG_FUNCTION_ARGS)
 	HeapTuple tup;
 	TableScanDesc scan;
 	int32 found_id = -1;
-	Name name = PG_GETARG_NAME(0);
+	// Name name = PG_GETARG_NAME(0); // AALEKSEEV TODO this should assert!
 	Oid tbl_oid = name_to_oid(PHONEBOOK_TABLE_NAME);
 	ScanKeyData scanKey;
-
 
 	ScanKeyEntryInitialize(
 		&scanKey,
@@ -113,18 +112,12 @@ phonebook_find_first_null_phone(PG_FUNCTION_ARGS)
 
 	while ((tup = heap_getnext(scan, ForwardScanDirection)) != NULL)
 	{
-		Name rec_name;
 		Datum values[Natts_phonebook];
 		bool isnull[Natts_phonebook];
 
 		heap_deform_tuple(tup, RelationGetDescr(rel), values, isnull);
-		rec_name = DatumGetName(values[Anum_phonebook_name - 1]);
-
-		if(strcmp(rec_name->data, name->data) == 0)
-		{
-			found_id = DatumGetInt32(values[Anum_phonebook_id - 1]);
-			break;
-		}		
+		found_id = DatumGetInt32(values[Anum_phonebook_id - 1]);
+		break;		
 	}
 
 	table_endscan(scan);
