@@ -7,4 +7,5 @@ CREATE INDEX phonebook_name_idx ON phonebook USING btree(name);
 CREATE OR REPLACE FUNCTION phonebook_lookup_seqscan_deform(name NAME) RETURNS INT
 AS 'MODULE_PATHNAME', 'phonebook_lookup_seqscan_deform' LANGUAGE C;
 
--- TODO: delete
+CREATE OR REPLACE FUNCTION phonebook_find_first_null_phone() RETURNS INT
+AS 'MODULE_PATHNAME', 'phonebook_find_first_null_phone' LANGUAGE C;
